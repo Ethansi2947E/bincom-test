@@ -1,0 +1,47 @@
+{% extends 'election_results/base.html' %}
+
+{% block title %}Election Results Portal{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Welcome to the Election Results Portal</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-4">Polling Unit Results</h2>
+            <p class="text-gray-600 mb-4">View detailed election results for specific polling units.</p>
+            <a href="{% url 'election_results:polling_unit_result' %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                View Polling Unit Results
+            </a>
+        </div>
+        
+        <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-4">LGA Results</h2>
+            <p class="text-gray-600 mb-4">View summed election results for all polling units in a Local Government Area.</p>
+            <a href="{% url 'election_results:lga_result' %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                View LGA Results
+            </a>
+        </div>
+        
+        <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-4">Store Results</h2>
+            <p class="text-gray-600 mb-4">Store new election results for a polling unit.</p>
+            <a href="{% url 'election_results:store_result' %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                Store New Results
+            </a>
+        </div>
+    </div>
+    
+    <div class="mt-12 bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">About This Portal</h2>
+        <p class="text-gray-600 mb-4">
+            This Election Results Portal provides access to election results data at both the polling unit and local government area levels.
+            You can view detailed results for individual polling units, see aggregated results for entire local government areas,
+            and store new results as they become available.
+        </p>
+        <p class="text-gray-600">
+            The system is designed to ensure transparency and accessibility of election data for all stakeholders.
+        </p>
+    </div>
+</div>
+{% endblock %} 

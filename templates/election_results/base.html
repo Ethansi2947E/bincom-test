@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Election Results{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold">Election Results Portal</h1>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="{% url 'election_results:index' %}" class="hover:text-blue-200 transition">Home</a></li>
+                        <li><a href="{% url 'election_results:polling_unit_result' %}" class="hover:text-blue-200 transition">Polling Unit Results</a></li>
+                        <li><a href="{% url 'election_results:lga_result' %}" class="hover:text-blue-200 transition">LGA Results</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4">
+            <p class="text-center">&copy; {% now "Y" %} Election Results Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 

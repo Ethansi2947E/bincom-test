@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Store Results{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Store New Polling Unit Results</h1>
+
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+                <label for="lga" class="block text-sm font-medium text-gray-700">
+                    Local Government Area
+                </label>
+                <select name="lga" id="lga" required
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <option value="">Select an LGA...</option>
+                    {% for lga in lgas %}
+                    <option value="{{ lga.lga_id }}">{{ lga.lga_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="ward" class="block text-sm font-medium text-gray-700">
+                    Ward
+                </label>
+                <input type="number" name="ward" id="ward" required
+                       class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+
+            <div>
+                <label for="polling_unit_number" class="block text-sm font-medium text-gray-700">
+                    Polling Unit Number
+                </label>
+                <input type="text" name="polling_unit_number" id="polling_unit_number" required
+                       class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+
+            <div>
+                <label for="polling_unit_name" class="block text-sm font-medium text-gray-700">
+                    Polling Unit Name
+                </label>
+                <input type="text" name="polling_unit_name" id="polling_unit_name" required
+                       class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+
+            <div>
+                <label for="polling_unit_description" class="block text-sm font-medium text-gray-700">
+                    Description
+                </label>
+                <textarea name="polling_unit_description" id="polling_unit_description" rows="3"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="latitude" class="block text-sm font-medium text-gray-700">
+                        Latitude
+                    </label>
+                    <input type="text" name="latitude" id="latitude"
+                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div>
+                    <label for="longitude" class="block text-sm font-medium text-gray-700">
+                        Longitude
+                    </label>
+                    <input type="text" name="longitude" id="longitude"
+                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">Party Results</h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                {% for party in parties %}
+                <div>
+                    <label for="party_{{ party }}" class="block text-sm font-medium text-gray-700">
+                        {{ party }}
+                    </label>
+                    <input type="number" name="party_{{ party }}" id="party_{{ party }}" min="0"
+                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <label for="entered_by" class="block text-sm font-medium text-gray-700">
+                Entered By
+            </label>
+            <input type="text" name="entered_by" id="entered_by" required
+                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="pt-5">
+            <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Store Results
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.getElementById('lga').addEventListener('change', function() {
+    // Here you can add AJAX to fetch wards for the selected LGA
+    // For now, we'll just use a simple ward input field
+});
+</script>
+{% endblock %} 
